@@ -10,8 +10,10 @@ That is, you want to be able to launch graphical applications inside the Docker 
 
 A quick diagram:
 
-Laptop (you want to see application GUI here) => Remote computer via ssh => Docker container (you want to launch the application here)
-      
+Laptop => Remote computer via ssh => Docker container 
+
+You want to launch a graphical application inside the Docker container and see the GUI in your laptop.
+   
 Requirements
 ------------
 If you are launching this script on a server (e.g. DGX) you need to edit the configuration file of the SSH server -> ```/etc/ssh/sshd_config``` and
