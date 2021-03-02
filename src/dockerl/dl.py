@@ -18,6 +18,7 @@ class DockerLauncher:
 
     def __init__(self):
         self.client = docker.from_env()
+        self.launched_containers = []
 
     @staticmethod
     def shell(cmd):
@@ -86,6 +87,8 @@ class DockerLauncher:
             vol[env['XAUTHORITY']] = {'bind': env['XAUTHORITY'], 'mode':"rw"}
         
         # Prepare dictionary of options for docker
+        env.update(additional_env_vars)
+        vol.update(additional_volumes)
         docker_options = {
             'environment' : env,
             'volumes' : vol,
@@ -97,7 +100,7 @@ class DockerLauncher:
 
 
     def launch_container(self, image_name, ifname='docker0', nvidia_runtime=False, volumes={}, 
-            env_vars={}):
+            env_vars={}, command=['sleep', 'infinity']):
         """
         @brief Launch a Docker container.
 
@@ -115,13 +118,12 @@ class DockerLauncher:
 
         # Launch container
         container = self.client.containers.run(image_name, detach=True,
-            command=['sleep', 'infinity'], **docker_options)
+            command=command, **docker_options)
+        
+        # Store it just in case we need it
+        self.launched_containers.append(container)
         
         return container
-
-    def launched_containers(self):
-        # TODO
-        pass
 
 
 if __name__ == '__main__':
