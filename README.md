@@ -86,7 +86,7 @@ dl = dockerl.DockerLauncher()
 container_0 = dl.launch_container('ubuntu')
 print(container_0.id)
 
-# Launch a container with Ubuntu (as command is specified, the CMD in your Dockerfile will be ignored)
+# Launch a container with Ubuntu (as a command is specified, the CMD in your Dockerfile will be ignored)
 container_1 = dl.launch_container('ubuntu', command='sleep infinity')
 print(container_1.id)
 
