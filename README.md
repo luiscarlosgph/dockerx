@@ -11,7 +11,11 @@ to launch graphical applications inside the container and see the output in your
 Requirements
 ------------
 If you are launching this script on a server (e.g. DGX) you need to edit the ```/etc/ssh/sshd_config``` file and
-add the option: ``` X11UseLocalhost no```. To edit ```/etc/ssh/sshd_config``` you need superuser access.
+add the option: 
+
+``` X11UseLocalhost no```
+
+To edit ```/etc/ssh/sshd_config``` you need superuser access.
 
 How to use it
 -------------
