@@ -70,7 +70,21 @@ As above, a clock should be shown in your display.
 
 Launch containers from your Python code using this module:
 ----------------------------------------------------------
-TODO
+Exemplary code snippet that launches two containers as in the examples above:
+
+```python
+import dockerl
+
+dl = dockerl.DockerLauncher()
+
+# Launch a container with Ubuntu
+container_1 = dl.launch_container('ubuntu')
+print(container_1.id)
+
+# Launch a container with CUDA support
+container_2 = dl.launch_container('nvidia/cuda:11.0-base', nvidia_runtime=True)
+print(container_2.id)
+```
 
 License
 -------
