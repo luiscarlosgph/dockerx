@@ -23,7 +23,8 @@ def main():
     
     # Launch docker container
     dl = dockerl.DockerLauncher()
-    container = dl.launch_container(args.image, nvidia_runtime=args.nvidia)
+    container = dl.launch_container(args.image, command='sleep infinity', 
+        nvidia_runtime=args.nvidia)
         
     # Print info for the user
     sys.stdout.write("\nTo get a container terminal run:  ") 

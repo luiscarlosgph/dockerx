@@ -100,7 +100,7 @@ class DockerLauncher:
 
 
     def launch_container(self, image_name, ifname='docker0', nvidia_runtime=False, volumes={}, 
-            env_vars={}, command=['sleep', 'infinity']):
+            env_vars={}, command=None):
         """
         @brief Launch a Docker container.
 
