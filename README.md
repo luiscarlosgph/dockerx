@@ -50,10 +50,12 @@ To get a container terminal run:  docker exec -it b05bd722477e /bin/bash
 To kill the container run:        docker kill b05bd722477e
 
 $ docker exec -it b05bd722477e /bin/bash
-root@b05bd722477e:/#
+root@b05bd722477e:/# apt update && apt install -y x11-apps
+root@b05bd722477e:/# xclock
 ```
+After this you should see a clock in your laptop screen.
 
-For example, to run an **ubuntu** container **with CUDA support**:
+To run an **ubuntu** container **with CUDA support**:
 ```bash
 $ python3 dockerl.run --image nvidia/cuda:11.0-base --nvidia 1
 
@@ -61,7 +63,8 @@ To get a container terminal run:  docker exec -it 0b2b964b8b8f /bin/bash
 To kill the container run:        docker kill 0b2b964b8b8f
 
 $ docker exec -it 0b2b964b8b8f /bin/bash
-root@0b2b964b8b8f:/#
+root@0b2b964b8b8f:/# apt update && apt install -y x11-apps
+root@0b2b964b8b8f:/# xclock
 ```
 
 Launch containers from your Python code using this module:
