@@ -75,7 +75,8 @@ Launch containers from your Python code using this module:
 ----------------------------------------------------------
 Exemplary code snippet that launches several containers, the last one with CUDA support. Remember that if no
 CMD is specified in the Dockerfile, the container will be created and subsequently
-destroyed. To keep the container running simply run ```sleep infinity``` as in the ```container_1``` example below.
+destroyed. When running a vanilla image such as ```ubuntu``` no CMD is specified, so to keep the container running 
+simply specify the command ```sleep infinity```, as in the ```container_1``` example below.
 
 ```python
 import dockerl
