@@ -73,10 +73,11 @@ As above, a clock should be shown in your display.
 
 Launch containers from your Python code using this module:
 ----------------------------------------------------------
-Exemplary code snippet that launches several containers, the last one with CUDA support. Remember that if no
-CMD is specified in the Dockerfile, the container will be created and subsequently
-destroyed. When running a vanilla image such as ```ubuntu``` no CMD is specified, so to keep the container running 
-simply specify the command ```sleep infinity``` (as in the ```container_1``` example below).
+Exemplary code snippet that shows different ways to launch containers using the Python module in this repo. 
+
+Remember that if no CMD is specified in the Dockerfile (as it is the case for vanilla images such as ```ubuntu```), 
+the container will be created and subsequently destroyed (as it happens for ```container_0``` below). To keep the 
+container running simply specify the command ```sleep infinity``` (as in ```container_1``` below).
 
 ```python
 import dockerl
