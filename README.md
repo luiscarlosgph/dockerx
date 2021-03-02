@@ -70,7 +70,7 @@ As above, a clock should be shown in your display.
 
 Launch containers from your Python code using this module:
 ----------------------------------------------------------
-Exemplary code snippet that launches two containers as in the examples above:
+Exemplary code snippet that launches two containers, a standard Ubuntu, and an Ubuntu with CUDA support.
 
 ```python
 import dockerl
