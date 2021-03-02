@@ -13,7 +13,7 @@ Requirements
 If you are launching this script on a server (e.g. DGX) you need to edit the configuration file of the SSH server -> ```/etc/ssh/sshd_config``` and
 add the option:
 
-``` X11UseLocalhost no```
+``` X11UseLocalhost no ```
 
 To edit ```/etc/ssh/sshd_config``` you need superuser access. After editing this file you need to run:
 ```bash
@@ -21,9 +21,15 @@ $ sudo service ssh reload
 ```
 This will reload the SSH server configuration without disconnecting existing sessions. 
 
+Install dependencies
+--------------------
+```bash
+$python3 -m pip install docker argparse shlex --user
+```
+
 Clone this repo
 ---------------
-```
+```bash
 $ git clone https://github.com/luiscarlosgph/docker-with-graphics.git
 $ cd docker-with-graphics
 ```
