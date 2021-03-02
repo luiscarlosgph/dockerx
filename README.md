@@ -17,6 +17,12 @@ add the option:
 
 To edit ```/etc/ssh/sshd_config``` you need superuser access.
 
+Clone this repo
+---------------
+```
+$ git clone 
+```
+
 How to use it
 -------------
 ```bash
