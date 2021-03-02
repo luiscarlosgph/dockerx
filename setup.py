@@ -12,4 +12,8 @@ setuptools.setup(name='dockerl',
     url='https://github.com/luiscarlosgph/docker-with-graphics',
     packages=['dockerl'],
     package_dir={'dockerl' : 'src/dockerl'}, 
+    install_requires=[
+        'argparse',
+        'docker',
+    ],
 )
