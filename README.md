@@ -28,11 +28,12 @@ $ sudo apt install python3 python3-pip
 $ python3 -m pip install docker argparse --user
 ```
 
-Clone this repo
----------------
+Install this package
+--------------------
 ```bash
 $ git clone https://github.com/luiscarlosgph/docker-with-graphics.git
 $ cd docker-with-graphics
+$ python3 setup.py install --user
 ```
 
 Launch containers
