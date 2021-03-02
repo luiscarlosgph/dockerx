@@ -57,7 +57,7 @@ After running ```xclock``` above you should see a clock in your laptop screen.
 
 To run an **ubuntu** container **with CUDA support**:
 ```bash
-$ python3 dockerl.run --image nvidia/cuda:11.0-base --nvidia 1
+$ python3 -m dockerl.run --image nvidia/cuda:11.0-base --nvidia 1
 
 To get a container terminal run:  docker exec -it 0b2b964b8b8f /bin/bash
 To kill the container run:        docker kill 0b2b964b8b8f
