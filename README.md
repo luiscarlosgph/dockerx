@@ -8,6 +8,11 @@ A typical use case of this script is when you are connecting via ssh from your l
 and you want to launch a docker container inside the server with X11 support. That is, you want to be able
 to launch graphical applications inside the container and see the output in your laptop. 
 
+Requirements
+------------
+If you are launching this script on a server (e.g. DGX) you need to edit the ```/etc/ssh/sshd_config``` file and
+add the option: ``` X11UseLocalhost no```. To edit ```/etc/ssh/sshd_config``` you need superuser access.
+
 How to use it
 -------------
 ```bash
