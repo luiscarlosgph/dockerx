@@ -11,14 +11,16 @@ to launch graphical applications inside the container and see the output in your
 How to use it
 -------------
 ```bash
-$ python3 launch_container.py --image-name <image name>
-The container id is <container id>, to get a container terminal run: docker exec -it <container id> /bin/bash
+$ python3 dockerl.py --image <image name> --nvidia <0 or 1>
 ```
 
 For example, to run an **ubuntu** container:
 ```bash
-$ python3 launch_container.py --image-name ubuntu
-The container id is <container name>, to get a container terminal run: docker exec -it <container name> /bin/bash
+$ python3 dockerl.py --image ubuntu
+
+To get a container terminal run:  docker exec -it 0b2b964b8b8f /bin/bash
+To kill the container run:        docker kill 0b2b964b8b8f
+
 ```
 
 If you are using the **nvidia runtime** because you are executing GPU applications inside the container, you can launch your container running:
