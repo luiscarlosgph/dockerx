@@ -75,20 +75,22 @@ Launch containers from your Python code using this module:
 ----------------------------------------------------------
 Exemplary code snippet that shows different ways to launch containers using the Python module in this repo. 
 
-Remember that if no CMD is specified in the Dockerfile (as it is the case for vanilla images such as ```ubuntu```), 
+<!--Remember that if no CMD is specified in the Dockerfile (as it is the case for vanilla images such as ```ubuntu```), 
 the container will be created and subsequently destroyed (as it happens for ```container_0``` below). To keep the 
-container running simply specify the command ```sleep infinity``` (as in ```container_1``` below).
+container running simply specify the command ```sleep infinity``` (as in ```container_1``` below).-->
 
 ```python
 import dockerl
 
 dl = dockerl.DockerLauncher()
 
-# Launch a container with Ubuntu (as no command is specified, the CMD in your Dockerfile will be executed)
+# If no command is specified here, the CMD in your Dockerfile will be executed, if there is no CMD in your 
+# Dockerfile either then the container will be created and immediately destroyed
 container_0 = dl.launch_container('ubuntu')
 print(container_0.id)
 
-# Launch a container with Ubuntu (as a command is specified, the CMD in your Dockerfile will be ignored)
+# If a command is specified here, the CMD in your Dockerfile will be ignored and overridden by the command 
+# specified here
 container_1 = dl.launch_container('ubuntu', command='sleep infinity')
 print(container_1.id)
 
