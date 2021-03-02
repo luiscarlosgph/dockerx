@@ -90,7 +90,7 @@ print(container_0.id)
 container_1 = dl.launch_container('ubuntu', command='sleep infinity')
 print(container_1.id)
 
-# Launch a container with CUDA support (as command is specified, the CMD in your Dockerfile will be ignored)
+# Launch a container with CUDA support (as a command is specified, the CMD in your Dockerfile will be ignored)
 container_2 = dl.launch_container('nvidia/cuda:11.0-base', command='nvidia-smi', nvidia_runtime=True)
 print(container_2.id)
 ```
