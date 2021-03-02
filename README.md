@@ -80,11 +80,15 @@ import dockerl
 
 dl = dockerl.DockerLauncher()
 
-# Launch a container with Ubuntu
+# Launch a container with Ubuntu (as no command is specified, the CMD in your Dockerfile will be executed)
+container_0 = dl.launch_container('ubuntu')
+print(container_0.id)
+
+# Launch a container with Ubuntu (as command is specified, the CMD in your Dockerfile will be ignored)
 container_1 = dl.launch_container('ubuntu', command='sleep infinity')
 print(container_1.id)
 
-# Launch a container with CUDA support
+# Launch a container with CUDA support (as command is specified, the CMD in your Dockerfile will be ignored)
 container_2 = dl.launch_container('nvidia/cuda:11.0-base', command='sleep infinity', nvidia_runtime=True)
 print(container_2.id)
 ```
