@@ -10,7 +10,7 @@ That is, you want to be able to launch graphical applications inside the Docker 
 
 A quick diagram:
 
-Laptop (see GUI here) => Remote computer via ssh => Docker container (launch application here)
+Laptop (you want to see application GUI here) => Remote computer via ssh => Docker container (you want to launch the application here)
       
 Requirements
 ------------
