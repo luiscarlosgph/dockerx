@@ -40,8 +40,8 @@ $ cd docker-with-graphics
 $ python3 setup.py install --user
 ```
 
-Launch containers
------------------
+Launch containers from your terminal
+------------------------------------
 ```bash
 $ python3 -m dockerl.run --image <image name> --nvidia <0 or 1>
 ```
@@ -72,8 +72,8 @@ root@0b2b964b8b8f:/# xclock
 ```
 As above, a clock should be shown in your display.
 
-Launch containers from your Python code using this module
-----------------------------------------------------------
+Launch containers from your Python code
+---------------------------------------
 Exemplary code snippet that shows different ways to launch containers using the Python module in this repo. 
 
 <!--Remember that if no CMD is specified in the Dockerfile (as it is the case for vanilla images such as ```ubuntu```), 
