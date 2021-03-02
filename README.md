@@ -21,6 +21,8 @@ $ python3 dockerl.py --image ubuntu --nvidia 1
 To get a container terminal run:  docker exec -it 0b2b964b8b8f /bin/bash
 To kill the container run:        docker kill 0b2b964b8b8f
 
+$ docker exec -it 0b2b964b8b8f /bin/bash
+root@0b2b964b8b8f:/#
 ```
 
 License
