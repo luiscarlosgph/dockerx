@@ -19,6 +19,7 @@ To edit ```/etc/ssh/sshd_config``` you need superuser access. After editing this
 ```bash
 $ sudo service ssh reload
 ```
+This will reload the SSH server configuration without disconnecting existing sessions. 
 
 Clone this repo
 ---------------
