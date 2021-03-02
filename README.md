@@ -66,6 +66,7 @@ $ docker exec -it 0b2b964b8b8f /bin/bash
 root@0b2b964b8b8f:/# apt update && apt install -y x11-apps
 root@0b2b964b8b8f:/# xclock
 ```
+As above, a clock should be shown in your display.
 
 Launch containers from your Python code using this module:
 ----------------------------------------------------------
