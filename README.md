@@ -81,11 +81,11 @@ import dockerl
 dl = dockerl.DockerLauncher()
 
 # Launch a container with Ubuntu
-container_1 = dl.launch_container('ubuntu')
+container_1 = dl.launch_container('ubuntu', command='sleep infinity')
 print(container_1.id)
 
 # Launch a container with CUDA support
-container_2 = dl.launch_container('nvidia/cuda:11.0-base', nvidia_runtime=True)
+container_2 = dl.launch_container('nvidia/cuda:11.0-base', command='sleep infinity', nvidia_runtime=True)
 print(container_2.id)
 ```
 
