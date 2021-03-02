@@ -31,8 +31,14 @@ $ sudo apt install python3 python3-pip
 $ python3 -m pip install docker argparse --user
 ```
 
-Install this package
---------------------
+Install using pip
+-----------------
+```bash
+$ python3 -m pip install dockerl --user
+```
+
+Install this package from source
+--------------------------------
 ```bash
 $ git clone https://github.com/luiscarlosgph/docker-with-graphics.git
 $ cd docker-with-graphics
