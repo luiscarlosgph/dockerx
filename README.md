@@ -12,19 +12,19 @@ How to use it
 -------------
 ```bash
 $ python3 launch_container.py --image-name <image name>
-The container id is <container id>, you can get a terminal into it running: docker exec -it <container id> /bin/bash
+The container id is <container id>, to get a container terminal run: docker exec -it <container id> /bin/bash
 ```
 
 For example, to run an **ubuntu** container:
 ```bash
 $ python3 launch_container.py --image-name ubuntu
-The container id is <container name>, you can get a terminal into it running: docker exec -it <container name> /bin/bash
+The container id is <container name>, to get a container terminal run: docker exec -it <container name> /bin/bash
 ```
 
 If you are using the **nvidia runtime** because you are executing GPU applications inside the container, you can launch your container running:
 ```bash
 $ python3 launch_container.py --image-name ubuntu --nvidia-runtime 1
-The container id is <container name>, you can get a terminal into it running: docker exec -it <container name> /bin/bash
+The container id is <container name>, to get a container terminal run: docker exec -it <container name> /bin/bash
 ```
 
 License
