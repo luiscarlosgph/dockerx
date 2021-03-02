@@ -25,7 +25,7 @@ Install dependencies
 --------------------
 ```bash
 $ sudo apt install python3 python3-pip
-$ python3 -m pip install docker argparse shlex --user
+$ python3 -m pip install docker argparse --user
 ```
 
 Clone this repo
