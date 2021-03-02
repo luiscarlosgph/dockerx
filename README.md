@@ -4,10 +4,13 @@ This repository contains a Python script that allows you to launch a docker cont
 
 Typical use case
 ----------------
-A typical use case of this script is when you are connecting via ssh from your laptop to a server (e.g. a DGX)
-and you want to launch a docker container inside the server with X11 support. That is, you want to be able
-to launch graphical applications inside the container and see the output in your laptop. 
+A typical use case of this script is when you are connecting via ssh from your laptop to a remote computer (e.g. a DGX server)
+and you want to launch a docker container inside the remote computer with X11 support. A quick diagram:
 
+Laptop => Remote computer (connected via ssh) => Docker container 
+
+You want to launch a graphical application inside the Docker container and see the GUI in your laptop.
+   
 Requirements
 ------------
 If you are launching this script on a server (e.g. DGX) you need to edit the configuration file of the SSH server -> ```/etc/ssh/sshd_config``` and
@@ -57,7 +60,7 @@ After running ```xclock``` above you should see a clock in your laptop screen.
 
 To run an **ubuntu** container **with CUDA support**:
 ```bash
-$ python3 dockerl.run --image nvidia/cuda:11.0-base --nvidia 1
+$ python3 -m dockerl.run --image nvidia/cuda:11.0-base --nvidia 1
 
 To get a container terminal run:  docker exec -it 0b2b964b8b8f /bin/bash
 To kill the container run:        docker kill 0b2b964b8b8f
