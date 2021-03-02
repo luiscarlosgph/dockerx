@@ -20,11 +20,12 @@ To edit ```/etc/ssh/sshd_config``` you need superuser access.
 Clone this repo
 ---------------
 ```
-$ git clone 
+$ git clone https://github.com/luiscarlosgph/docker-with-graphics.git
+$ cd docker-with-graphics
 ```
 
-How to use it
--------------
+Launch containers
+-----------------
 ```bash
 $ python3 dockerl.py --image <image name> --nvidia <0 or 1>
 ```
