@@ -85,7 +85,7 @@ import dockerl
 dl = dockerl.DockerLauncher()
 
 # If no command is specified here, the CMD in your Dockerfile will be executed, if there is no CMD in your 
-# Dockerfile either then the container will be created and immediately destroyed
+# Dockerfile either, then this container will be created and immediately destroyed
 container_0 = dl.launch_container('ubuntu')
 print(container_0.id)
 
