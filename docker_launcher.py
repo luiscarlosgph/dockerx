@@ -16,6 +16,7 @@ import fcntl
 import pathlib
 import docker
 
+
 def shell(cmd):
     """
     @brief Launches a terminal command and returns you the output.
@@ -89,6 +90,18 @@ def prep_docker_env(ifname='docker0', nvidia_runtime=False):
     return docker_options
 
 
+def launch_container(image_name, nvidia_runtime=False):
+    """@returns a Docker container that is running."""
+    # Prepare environment and volumes to run the container
+    docker_options = prep_docker_env(nvidia_runtime)
+
+    # Launch container
+    container = docker.from_env().containers.run(image_name, detach=True,
+        command=['sleep', 'infinity'], **docker_options)
+
+    return container
+
+
 def parse_command_line_parameters(parser):
     parser.add_argument('--image', required=True, help='Docker image name.',)
     parser.add_argument('--nvidia', required=False, default=False, 
@@ -103,13 +116,8 @@ def main():
     parser = argparse.ArgumentParser()
     args = parse_command_line_parameters(parser)
     
-    # Prepare environment and volumes to run the container
-    docker_options = prep_docker_env(nvidia_runtime=args.nvidia)
-
-    # Launch container
-    container = docker.from_env().containers.run(args.image, detach=True,
-        command=['sleep', 'infinity'], **docker_options)
-    
+    container = launch_container(args.image, args.nvidia)
+        
     # Print info for the user
     sys.stdout.write("\nTo get a container terminal run:  ") 
     sys.stdout.write('docker exec -it ' + container.id[:12]  + " /bin/bash\n") 
