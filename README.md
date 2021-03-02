@@ -14,18 +14,13 @@ How to use it
 $ python3 dockerl.py --image <image name> --nvidia <0 or 1>
 ```
 
-For example, to run an **ubuntu** container:
+For example, to run an **ubuntu** container with GPU support:
 ```bash
-$ python3 dockerl.py --image ubuntu
+$ python3 dockerl.py --image ubuntu --nvidia 1
 
 To get a container terminal run:  docker exec -it 0b2b964b8b8f /bin/bash
 To kill the container run:        docker kill 0b2b964b8b8f
 
-```
-
-If you are using the **nvidia runtime** because you are executing GPU applications inside the container, you can launch your container running:
-```bash
-$ python3 dockerl.py --image ubuntu --nvidia 1
 ```
 
 License
