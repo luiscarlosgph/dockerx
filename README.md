@@ -72,7 +72,7 @@ root@0b2b964b8b8f:/# xclock
 ```
 As above, a clock should be shown in your display.
 
-Launch containers from your Python code using this module:
+Launch containers from your Python code using this module
 ----------------------------------------------------------
 Exemplary code snippet that shows different ways to launch containers using the Python module in this repo. 
 
