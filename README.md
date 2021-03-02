@@ -53,7 +53,7 @@ $ docker exec -it b05bd722477e /bin/bash
 root@b05bd722477e:/# apt update && apt install -y x11-apps
 root@b05bd722477e:/# xclock
 ```
-After this you should see a clock in your laptop screen.
+After running ```xclock``` above you should see a clock in your laptop screen.
 
 To run an **ubuntu** container **with CUDA support**:
 ```bash
