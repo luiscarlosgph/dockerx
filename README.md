@@ -24,6 +24,7 @@ This will reload the SSH server configuration without disconnecting existing ses
 Install dependencies
 --------------------
 ```bash
+$ sudo apt install python3 python3-pip
 $ python3 -m pip install docker argparse shlex --user
 ```
 
