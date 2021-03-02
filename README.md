@@ -24,13 +24,6 @@ $ sudo service ssh reload
 ```
 This will reload the SSH server configuration without disconnecting existing sessions. 
 
-Install dependencies
---------------------
-```bash
-$ sudo apt install python3 python3-pip
-$ python3 -m pip install docker argparse --user
-```
-
 Install using pip
 -----------------
 ```bash
@@ -40,6 +33,8 @@ $ python3 -m pip install dockerl --user
 Install this package from source
 --------------------------------
 ```bash
+$ sudo apt install python3 python3-pip
+$ python3 -m pip install docker argparse --user
 $ git clone https://github.com/luiscarlosgph/docker-with-graphics.git
 $ cd docker-with-graphics
 $ python3 setup.py install --user
