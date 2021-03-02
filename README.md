@@ -41,7 +41,7 @@ $ docker exec -it b05bd722477e /bin/bash
 root@b05bd722477e:/#
 ```
 
-For example, to run an **ubuntu** container with CUDA support:
+For example, to run an **ubuntu** container **with CUDA support**:
 ```bash
 $ python3 dockerl.py --image nvidia/cuda:11.0-base --nvidia 1
 
