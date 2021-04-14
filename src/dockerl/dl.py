@@ -61,7 +61,7 @@ class DockerLauncher:
             env['DISPLAY'] = os.environ['DISPLAY']
             vol['/tmp/.X11-unix'] = {'bind': '/tmp/.X11-unix', 'mode': 'rw'}
             DockerLauncher.shell('xhost +SI:localuser:root')
-        else:  # e.g. we are in a remote machine via SSH with X11 forwarding enabled (ssh -X or -Y)
+        else:  # e.g. we are in a remote machine via SSH with X11 forwarding enabled (ssh -X)
             # Set DISPLAY 
             ip = DockerLauncher.get_ip(ifname)
             port_offset = os.environ['DISPLAY'].split(':')[1]
