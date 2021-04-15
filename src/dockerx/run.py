@@ -12,7 +12,7 @@ def parse_command_line_parameters(parser):
     parser.add_argument('--image', required=True, help='Docker image name.',)
     parser.add_argument('--nvidia', required=False, default=False, 
                         help='Activate the use of nvidia runtime. Default is 0.')
-    parser.add_argument('--command', required=False, default='sleep infinity',
+    parser.add_argument('--command', required=False, default=None,
                         help='Command to be executed in the container.')
 
     args = parser.parse_args()
