@@ -57,7 +57,7 @@ If --command is not specified, the default command executed inside the container
 so your container will run forever. This way you can *bash* into it with ```docker exec -it <container id> /bin/bash```
 and run GUIs inside the container.
 
-If you want to run the CMD command defined in the Dockerfile, simply run:
+If you want to run the command defined with CMD in the Dockerfile of your image, simply run:
 ```bash
 $ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command None
 ```
