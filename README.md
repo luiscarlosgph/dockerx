@@ -98,7 +98,6 @@ To kill the container run:        docker kill 0b2b964b8b8f
 To remove the container run:      docker rm 0b2b964b8b8f
 
 $ docker exec -it 0b2b964b8b8f /bin/bash
-root@0b2b964b8b8f:/# apt update && apt install -y x11-apps
 root@0b2b964b8b8f:/# nvidia-smi
 Thu Apr 15 23:42:59 2021
 +-----------------------------------------------------------------------------+
@@ -119,10 +118,13 @@ Thu Apr 15 23:42:59 2021
 |        ID   ID                                                   Usage      |
 |=============================================================================|
 +-----------------------------------------------------------------------------+
+root@0b2b964b8b8f:/# apt update && apt install -y x11-apps
 root@0b2b964b8b8f:/# xclock
 ```
 
-```xclock``` should be now shown in your local display.
+As in the example above, ```xclock``` should be now shown in your local display,
+however, this container has CUDA support so GPU applications can now be executed
+inside the container.
 
 Launch containers from your Python code
 ---------------------------------------
