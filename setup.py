@@ -3,15 +3,15 @@
 import setuptools
 import unittest
 
-setuptools.setup(name='dockerl',
-    version='0.1.0',
+setuptools.setup(name='dockerx',
+    version='0.2.0',
     description='Launcher of Docker containers.',
     author='Luis C. Garcia-Peraza Herrera',
     author_email='luiscarlos.gph@gmail.com',
     license='MIT',
     url='https://github.com/luiscarlosgph/docker-with-graphics',
-    packages=['dockerl'],
-    package_dir={'dockerl' : 'src/dockerl'}, 
+    packages=['dockerx'],
+    package_dir={'dockerx' : 'src/dockerx'}, 
     install_requires=[
         'argparse',
         'docker',

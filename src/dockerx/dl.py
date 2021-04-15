@@ -104,7 +104,7 @@ class DockerLauncher:
     @staticmethod
     def get_port_offset_from_display():
         port_offset = None
-        port_pattern = '^.*[:](\d+)$'
+        port_pattern = '^.*[:](\d+)(?:[.]\d+|)$'
         m = re.match(port_pattern, os.environ['DISPLAY'])
         if m:
             port_offset = int(m.group(1))
@@ -167,7 +167,7 @@ class DockerLauncher:
                 if DockerLauncher.interface_exists(ifname):
                     ip = DockerLauncher.get_ip_from_interface(ifname) 
                 else:
-                    msg = """[WARN] dockerl: the network interface provided
+                    msg = """[WARN] dockerx: the network interface provided
                              to the DockerLauncher => """
                     msg += ifname
                     msg += """ <= could not be found in this computer.
@@ -185,7 +185,7 @@ class DockerLauncher:
             port_offset = DockerLauncher.get_port_offset_from_display()
             
             # Set DISPLAY for Docker container
-            env['DISPLAY'] = ip + ':' + port_offset
+            env['DISPLAY'] = ip + ':' + str(port_offset)
 
             # Create an empty Xauthority file if it does not exist
             env['XAUTHORITY'] = os.path.join(tempfile.gettempdir(), 

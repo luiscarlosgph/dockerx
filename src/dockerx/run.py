@@ -5,7 +5,7 @@
 
 import argparse
 import sys
-import dockerl
+import dockerx
 
 def parse_command_line_parameters(parser):
     parser.add_argument('--image', required=True, help='Docker image name.',)
@@ -22,7 +22,7 @@ def main():
     args = parse_command_line_parameters(parser)
     
     # Launch docker container
-    dl = dockerl.DockerLauncher()
+    dl = dockerx.DockerLauncher()
     container = dl.launch_container(args.image, command='sleep infinity', 
         nvidia_runtime=args.nvidia)
         
