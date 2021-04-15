@@ -52,6 +52,7 @@ $ python3 -m dockerl.run --image ubuntu
 
 To get a container terminal run:  docker exec -it b05bd722477e /bin/bash
 To kill the container run:        docker kill b05bd722477e
+To remove the container run:      docker rm b05bd722477e
 
 $ docker exec -it b05bd722477e /bin/bash
 root@b05bd722477e:/# apt update && apt install -y x11-apps
@@ -65,6 +66,7 @@ $ python3 -m dockerl.run --image nvidia/cuda:11.0-base --nvidia 1
 
 To get a container terminal run:  docker exec -it 0b2b964b8b8f /bin/bash
 To kill the container run:        docker kill 0b2b964b8b8f
+To remove the container run:      docker rm 0b2b964b8b8f
 
 $ docker exec -it 0b2b964b8b8f /bin/bash
 root@0b2b964b8b8f:/# apt update && apt install -y x11-apps
