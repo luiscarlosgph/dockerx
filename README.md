@@ -57,7 +57,7 @@ For example:
 ```
 $ python3 -m dockerx.run --image nvidia/cuda:11.0-base --nvidia 1 --command '/bin/bash -c "apt update && apt install -y x11-apps && xclock"'
 ```
-This should display a clock in your local screen.
+This should display ```xclock``` in your local screen.
 
 The idea behind the ```--command``` parameter is to use it for launching jobs inside the 
 container that require X11 support. No console output will be shown when running a command 
