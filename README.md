@@ -53,13 +53,20 @@ To launch a container and execute a specific command inside the container:
 ```bash
 $ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command <shell command>
 ```
+For example:
+```
+$ python3 -m dockerx.run --image nvidia/cuda:11.0-base --nvidia 1 --command '/bin/bash -c "apt update && apt install -y x11-apps && xclock"'
+```
+This should display a clock in your local screen.
+
 The idea behind the ```--command``` parameter is to use it for launching jobs inside the 
 container that require X11 support. No console output will be shown when running a command 
 with the ```--command``` option.
 
 If ```--command``` is not specified, the default command executed inside the container is that 
-defined by the CMD keyword in the Dockerfile of your image. If None is defined, the 
-container will start, do nothing, and stop immediately. 
+defined by the CMD keyword in the Dockerfile of your image. If None is defined (as happens for 
+many images such as *ubuntu* or *nvidia/cuda:11.0-base*), the container will start, 
+do nothing, and stop immediately. 
 
 If you want to run a container forever so you can *bash* into it with ```docker exec -it <container id> /bin/bash```
 and run GUIs inside the container, simply run:
@@ -67,7 +74,7 @@ and run GUIs inside the container, simply run:
 $ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command 'sleep infinity'
 ```
 
-For example, to run just an **ubuntu** container:
+For example, to run just an *ubuntu* container:
 ```bash
 $ python3 -m dockerx.run --image ubuntu --command 'sleep infinity'
 
@@ -79,9 +86,9 @@ $ docker exec -it b05bd722477e /bin/bash
 root@b05bd722477e:/# apt update && apt install -y x11-apps
 root@b05bd722477e:/# xclock
 ```
-After running ```xclock``` above you should see a clock in your laptop screen.
+After running ```xclock``` above you should see a clock in your local screen.
 
-To run an **ubuntu** container **with CUDA support**:
+To run an *ubuntu* container *with CUDA support*:
 
 ```bash
 $ python3 -m dockerx.run --image nvidia/cuda:11.0-base --nvidia 1 --command 'sleep infinity'
