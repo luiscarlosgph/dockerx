@@ -122,8 +122,8 @@ container_2 = dl.launch_container('nvidia/cuda:11.0-base', command='sleep infini
 print(container_2.id)
 ```
 
-Run unit tests:
----------------
+Run unit tests
+--------------
 ```bash
 $ python3 tests/test_docker_launcher.py
 ```
