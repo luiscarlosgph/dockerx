@@ -4,7 +4,7 @@ import setuptools
 import unittest
 
 setuptools.setup(name='dockerx',
-    version='0.2.0',
+    version='0.3.0',
     description='Launcher of Docker containers.',
     author='Luis C. Garcia-Peraza Herrera',
     author_email='luiscarlos.gph@gmail.com',
