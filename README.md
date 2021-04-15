@@ -88,7 +88,7 @@ root@b05bd722477e:/# xclock
 ```
 After running ```xclock``` above you should see a clock in your local screen.
 
-To run an *ubuntu* container *with CUDA support*:
+To run an ```ubuntu``` container **with CUDA support**:
 
 ```bash
 $ python3 -m dockerx.run --image nvidia/cuda:11.0-base --nvidia 1 --command 'sleep infinity'
@@ -102,7 +102,7 @@ root@0b2b964b8b8f:/# apt update && apt install -y x11-apps
 root@0b2b964b8b8f:/# xclock
 ```
 
-As above, a clock should be shown in your display.
+As above, a ```xclock``` should be shown in your local display.
 
 Launch containers from your Python code
 ---------------------------------------
