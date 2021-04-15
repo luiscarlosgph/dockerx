@@ -99,10 +99,30 @@ To remove the container run:      docker rm 0b2b964b8b8f
 
 $ docker exec -it 0b2b964b8b8f /bin/bash
 root@0b2b964b8b8f:/# apt update && apt install -y x11-apps
+root@0b2b964b8b8f:/# nvidia-smi
+Thu Apr 15 23:42:59 2021
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 460.39       Driver Version: 460.39       CUDA Version: 11.2     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  TITAN X (Pascal)    Off  | 00000000:01:00.0 Off |                  N/A |
+| 23%   27C    P8     9W / 250W |     71MiB / 12195MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
++-----------------------------------------------------------------------------+
 root@0b2b964b8b8f:/# xclock
 ```
 
-As above, a ```xclock``` should be shown in your local display.
+```xclock``` should be now shown in your local display.
 
 Launch containers from your Python code
 ---------------------------------------
