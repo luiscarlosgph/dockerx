@@ -57,7 +57,7 @@ The idea behind the ```--command``` parameter is to use it for launching jobs in
 container that require X11 support. No console output will be shown when running a command 
 with the ```--command``` option.
 
-If --command is not specified, the default command executed inside the container is that 
+If ```--command``` is not specified, the default command executed inside the container is that 
 defined by the CMD keyword in the Dockerfile of your image. If None is defined, the 
 container will start, do nothing, and stop immediately. 
 
