@@ -55,10 +55,11 @@ $ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command <shell
 ```
 The idea behind the ```--command``` parameter is to use it for launching jobs inside the 
 container that require X11 support. No console output will be shown when running a command 
-with the ```--command``` option, as docker already provides that functionality by default.
+with the ```--command``` option.
 
 If --command is not specified, the default command executed inside the container is that 
-defined by the CMD keyword in the Dockerfile of your image.
+defined by the CMD keyword in the Dockerfile of your image. If None is defined, the 
+container will start, do nothing, and stop immediately. 
 
 If you want to run a container forever so you can *bash* into it with ```docker exec -it <container id> /bin/bash```
 and run GUIs inside the container, simply run:
