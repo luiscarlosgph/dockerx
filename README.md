@@ -122,9 +122,9 @@ root@0b2b964b8b8f:/# apt update && apt install -y x11-apps
 root@0b2b964b8b8f:/# xclock
 ```
 
-As in the example above, ```xclock``` should be now shown in your local display,
-however, this container has CUDA support so GPU applications can now be executed
-inside the container.
+As in the example above, ```xclock``` should be now shown in your local display.
+However, this container has CUDA support. GPU applications can now be executed
+and displayed from within the container.
 
 Launch containers from your Python code
 ---------------------------------------
