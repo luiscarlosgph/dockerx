@@ -53,7 +53,7 @@ To launch a container and execute a specific command inside the container:
 ```bash
 $ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command <shell command>
 ```
-If --command is not specified, the default --command executed is ```sleep infinity```,
+If --command is not specified, the default command executed inside the container is ```sleep infinity```,
 so your container will run forever. This way you can *bash* into it with ```docker exec -it <container id> /bin/bash```
 and run GUIs inside the container.
 
