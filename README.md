@@ -49,18 +49,20 @@ $ python3 setup.py install --user
 
 Launch containers from your terminal
 ------------------------------------
-Run a container with a specific command:
+To launch a container and execute a specific command inside the container:
 ```bash
 $ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command <shell command>
 ```
 If --command is not specified, the default --command executed is ```sleep infinity```,
-so your container will run forever (so that you can bash into it with ```docker exec -it <container id> /bin/bash```
-and run GUIs inside the container).
+so your container will run forever. This way you can *bash* into it with ```docker exec -it <container id> /bin/bash```
+and run GUIs inside the container.
 
-If you want to run the CMD command defined in the Dockerfile:
+If you want to run the CMD command defined in the Dockerfile, simply run:
 ```bash
 $ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command None
 ```
+<!--The idea of the --command parameter is to use it for launching jobs inside the container
+that require X11 support. No console output will be shown when running a command with the --command option.-->
 
 For example, to run just an **ubuntu** container:
 ```bash
