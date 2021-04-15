@@ -42,8 +42,8 @@ Install this package from source
 ```bash
 $ sudo apt install python3 python3-pip
 $ python3 -m pip install docker argparse --user
-$ git clone https://github.com/luiscarlosgph/docker-with-graphics.git
-$ cd docker-with-graphics
+$ git clone https://github.com/luiscarlosgph/dockerx.git
+$ cd dockerx
 $ python3 setup.py install --user
 ```
 
@@ -106,6 +106,12 @@ print(container_1.id)
 # Launch a container with CUDA support (as a command is specified, the CMD in your Dockerfile will be ignored)
 container_2 = dl.launch_container('nvidia/cuda:11.0-base', command='sleep infinity', nvidia_runtime=True)
 print(container_2.id)
+```
+
+Run unit tests:
+---------------
+```bash
+$ python3 tests/test_docker_launcher.py
 ```
 
 License
