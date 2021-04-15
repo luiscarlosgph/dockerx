@@ -53,20 +53,23 @@ To launch a container and execute a specific command inside the container:
 ```bash
 $ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command <shell command>
 ```
-If --command is not specified, the default command executed inside the container is ```sleep infinity```,
-so your container will run forever. This way you can *bash* into it with ```docker exec -it <container id> /bin/bash```
-and run GUIs inside the container.
+The idea behind the ```--command``` parameter is to use it for launching jobs inside the 
+container that require X11 support. No console output will be shown when running a command 
+with the ```--command``` option.
 
-If you want to run the command defined with CMD in the Dockerfile of your image, simply run:
+If ```--command``` is not specified, the default command executed inside the container is that 
+defined by the CMD keyword in the Dockerfile of your image. If None is defined, the 
+container will start, do nothing, and stop immediately. 
+
+If you want to run a container forever so you can *bash* into it with ```docker exec -it <container id> /bin/bash```
+and run GUIs inside the container, simply run:
 ```bash
-$ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command None
+$ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command 'sleep infinity'
 ```
-<!--The idea of the --command parameter is to use it for launching jobs inside the container
-that require X11 support. No console output will be shown when running a command with the --command option.-->
 
 For example, to run just an **ubuntu** container:
 ```bash
-$ python3 -m dockerx.run --image ubuntu
+$ python3 -m dockerx.run --image ubuntu --command 'sleep infinity'
 
 To get a container terminal run:  docker exec -it b05bd722477e /bin/bash
 To kill the container run:        docker kill b05bd722477e
@@ -81,7 +84,7 @@ After running ```xclock``` above you should see a clock in your laptop screen.
 To run an **ubuntu** container **with CUDA support**:
 
 ```bash
-$ python3 -m dockerx.run --image nvidia/cuda:11.0-base --nvidia 1
+$ python3 -m dockerx.run --image nvidia/cuda:11.0-base --nvidia 1 --command 'sleep infinity'
 
 To get a container terminal run:  docker exec -it 0b2b964b8b8f /bin/bash
 To kill the container run:        docker kill 0b2b964b8b8f
@@ -119,8 +122,8 @@ container_2 = dl.launch_container('nvidia/cuda:11.0-base', command='sleep infini
 print(container_2.id)
 ```
 
-Run unit tests:
----------------
+Run unit tests
+--------------
 ```bash
 $ python3 tests/test_docker_launcher.py
 ```
