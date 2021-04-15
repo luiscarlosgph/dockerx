@@ -11,7 +11,7 @@ import pathlib
 import threading
 
 # My imports
-import dockerl
+import dockerx
 
 def dummy_tcp_server(host, port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -25,44 +25,44 @@ def dummy_tcp_server(host, port):
 class TestDockerLauncher(unittest.TestCase):
 
     def test_get_ip_from_interface(self):
-        ip = dockerl.DockerLauncher.get_ip_from_interface('lo')
+        ip = dockerx.DockerLauncher.get_ip_from_interface('lo')
         self.assertEqual(ip, '127.0.0.1')
     
     def test_get_ip_from_display(self):
         # Positive IP test
         os.environ['DISPLAY'] = '192.168.69.96:99'
-        ip = dockerl.DockerLauncher.get_ip_from_display()
+        ip = dockerx.DockerLauncher.get_ip_from_display()
         self.assertEqual(ip, '192.168.69.96')
 
         # Positive hostname test
         os.environ['DISPLAY'] = 'localhost:23'
-        ip = dockerl.DockerLauncher.get_ip_from_display()
+        ip = dockerx.DockerLauncher.get_ip_from_display()
         self.assertEqual(ip, '127.0.0.1')
         
         # Negative test (not a valid hostname either by RFC 952)
         os.environ['DISPLAY'] = '129.23.2:89'
-        ip = dockerl.DockerLauncher.get_ip_from_display()
+        ip = dockerx.DockerLauncher.get_ip_from_display()
         self.assertFalse(ip)
     
     def test_get_port_from_display(self):
         # Positive IPv4:port test
         os.environ['DISPLAY'] = '123.4.5.6:89'
-        port = dockerl.DockerLauncher.get_port_from_display()
+        port = dockerx.DockerLauncher.get_port_from_display()
         self.assertEqual(port, 6089)
         
         # Positive hostname:port test
         os.environ['DISPLAY'] = 'localhost:8'
-        port = dockerl.DockerLauncher.get_port_from_display()
+        port = dockerx.DockerLauncher.get_port_from_display()
         self.assertEqual(port, 6008)
 
         # Positive :port test
         os.environ['DISPLAY'] = ':3'
-        port = dockerl.DockerLauncher.get_port_from_display()
+        port = dockerx.DockerLauncher.get_port_from_display()
         self.assertEqual(port, 6003)
 
         # Negative test
         os.environ['DISPLAY'] = '127.0.0.1:no_port_for_you'
-        port = dockerl.DockerLauncher.get_port_from_display()
+        port = dockerx.DockerLauncher.get_port_from_display()
         self.assertFalse(port)
 
     def test_tcp_socket_detection(self):
@@ -77,7 +77,7 @@ class TestDockerLauncher(unittest.TestCase):
         thread.start()
 
         # Check that we are able to detect dummy X11 TCP server
-        socket_type = dockerl.DockerLauncher.get_x11_server_socket_type()
+        socket_type = dockerx.DockerLauncher.get_x11_server_socket_type()
         self.assertEqual(socket_type, 'tcp')
 
         thread.join()
@@ -89,12 +89,12 @@ class TestDockerLauncher(unittest.TestCase):
 
         # Create dummy unix socket
         pathlib.Path('/tmp/.X11-unix/X' + str(offset)).touch()
-        socket_type = dockerl.DockerLauncher.get_x11_server_socket_type()
+        socket_type = dockerx.DockerLauncher.get_x11_server_socket_type()
         self.assertEqual(socket_type, 'unix')
 
     def test_negative_socket_deteection(self):
         os.environ['DISPLAY'] = ':96'
-        socket_type = dockerl.DockerLauncher.get_x11_server_socket_type()
+        socket_type = dockerx.DockerLauncher.get_x11_server_socket_type()
         self.assertFalse(socket_type)
 
 if __name__ == '__main__':
