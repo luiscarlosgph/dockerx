@@ -49,8 +49,16 @@ $ python3 setup.py install --user
 
 Launch containers from your terminal
 ------------------------------------
+Run a container with a specific command:
 ```bash
-$ python3 -m dockerx.run --image <image name> --nvidia <0 or 1>
+$ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command <shell command>
+```
+If a --command is not specified, the default command executed is ```sleep infinity```,
+so your container will run forever.
+
+If you want to run the CMD command defined in the Dockerfile:
+```bash
+$ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command None
 ```
 
 For example, to run just an **ubuntu** container:
