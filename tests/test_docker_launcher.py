@@ -22,6 +22,10 @@ def dummy_tcp_server(host, port):
     client_sock.close()
     sock.close()
 
+def is_port_in_use(port):
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        return s.connect_ex(('localhost', port)) == 0
+
 class TestDockerLauncher(unittest.TestCase):
 
     def test_get_ip_from_interface(self):
@@ -65,14 +69,19 @@ class TestDockerLauncher(unittest.TestCase):
         port = dockerx.DockerLauncher.get_port_from_display()
         self.assertFalse(port)
 
-    def test_tcp_socket_detection(self):
-        # Setup DISPLAY
-        offset = 28
-        os.environ['DISPLAY'] = ':' + str(offset)
-
-        # Run an X11 dummy TCP server
+    def test_tcp_socket_detection(self, base_port=6000):
+        # Find a port that is not in use
+        offset = 50
         host = 'localhost'
-        port = 6000 + offset
+        port = base_port + offset
+        while is_port_in_use(port): 
+            offset += 1 
+            port = base_port + offset
+
+        # Set the DISPLAY pointing to the unused port
+        os.environ['DISPLAY'] = ':' + str(offset)
+        
+        # Run an X11 dummy TCP server
         thread = threading.Thread(target=dummy_tcp_server, args=(host, port))
         thread.start()
 
