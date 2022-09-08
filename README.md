@@ -7,7 +7,9 @@ Typical use case
 ----------------
 A typical use case of this script is when you are connecting via ssh from your 
 laptop to a remote computer (e.g. a DGX server) and you want to launch a docker 
-container inside the remote computer with X11 support. A quick diagram:
+container inside the remote computer with X11 support. 
+
+A quick diagram:
 
 Laptop => Remote computer (connected via ssh) => Docker container 
 
