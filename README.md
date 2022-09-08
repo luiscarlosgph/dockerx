@@ -157,6 +157,12 @@ Run unit tests
 $ python3 tests/test_docker_launcher.py
 ```
 
+Author
+------
+
+Luis Carlos Garcia-Peraza Herrera (luiscarlos.gph@gmail.com).
+
+
 License
 -------
 The code in this repository is released under an [MIT license](https://github.com/luiscarlosgph/docker-with-graphics/blob/main/LICENSE).
