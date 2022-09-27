@@ -17,7 +17,7 @@ setuptools.setup(name='dockerx',
     license='MIT',
     url='https://github.com/luiscarlosgph/docker-with-graphics',
     packages=['dockerx'],
-    package_dir={'dockerx' : 'src/dockerx'}, 
+    package_dir={'dockerx' : 'src'}, 
     install_requires=[
         'argparse',
         'docker',
