@@ -101,19 +101,19 @@ To remove the container run:      docker rm 0b2b964b8b8f
 
 $ docker exec -it 0b2b964b8b8f /bin/bash
 root@0b2b964b8b8f:/# nvidia-smi
-Thu Apr 15 23:42:59 2021
+Tue Sep 27 11:12:56 2022
 +-----------------------------------------------------------------------------+
-| NVIDIA-SMI 460.39       Driver Version: 460.39       CUDA Version: 11.2     |
+| NVIDIA-SMI 515.65.01    Driver Version: 515.65.01    CUDA Version: 11.7     |
 |-------------------------------+----------------------+----------------------+
 | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
 | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
 |                               |                      |               MIG M. |
 |===============================+======================+======================|
-|   0  TITAN X (Pascal)    Off  | 00000000:01:00.0 Off |                  N/A |
-| 23%   27C    P8     9W / 250W |     71MiB / 12195MiB |      0%      Default |
+|   0  NVIDIA TITAN X ...  Off  | 00000000:01:00.0  On |                  N/A |
+| 23%   35C    P8    17W / 250W |    369MiB / 12288MiB |      0%      Default |
 |                               |                      |                  N/A |
 +-------------------------------+----------------------+----------------------+
-
+                                                                               
 +-----------------------------------------------------------------------------+
 | Processes:                                                                  |
 |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
