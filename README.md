@@ -57,7 +57,7 @@ $ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command <shell
 ```
 For example:
 ```
-$ python3 -m dockerx.run --image nvidia/cuda:11.0-base --nvidia 1 --command '/bin/bash -c "apt update && apt install -y x11-apps && xclock"'
+$ python3 -m dockerx.run --image nvidia/cuda:11.7.1-base-ubuntu20.04 --nvidia 1 --command '/bin/bash -c "apt update && apt install -y x11-apps && xclock"'
 ```
 This should display ```xclock``` in your local screen.
 
@@ -67,7 +67,7 @@ with the ```--command``` option.
 
 If ```--command``` is not specified, the default command executed inside the container is that 
 defined by the CMD keyword in the Dockerfile of your image. If None is defined (as happens for 
-many images such as ```ubuntu``` or ```nvidia/cuda:11.0-base```), the container will start, 
+many images such as ```ubuntu``` or ```nvidia/cuda:11.7.1-base-ubuntu20.04```), the container will start, 
 do nothing, and stop immediately. 
 
 If you want to run a container forever so you can bash into it with ```docker exec -it <container id> /bin/bash```
@@ -93,7 +93,7 @@ After running ```xclock``` above you should see a clock in your local screen.
 To run an ```ubuntu``` container **with CUDA support**:
 
 ```bash
-$ python3 -m dockerx.run --image nvidia/cuda:11.0-base --nvidia 1 --command 'sleep infinity'
+$ python3 -m dockerx.run --image nvidia/cuda:11.7.1-base-ubuntu20.04 --nvidia 1 --command 'sleep infinity'
 
 To get a container terminal run:  docker exec -it 0b2b964b8b8f /bin/bash
 To kill the container run:        docker kill 0b2b964b8b8f
