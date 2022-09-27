@@ -64,7 +64,7 @@ with the ```--command``` option. If ```--command``` is not specified, the defaul
 defined by the `CMD` keyword in the Dockerfile of your image. If None is defined (as happens for 
 many images such as ```ubuntu``` or ```nvidia/cuda:11.7.1-base-ubuntu20.04```), the container will start, 
 do nothing, and stop immediately. 
-   * `--env`: 
+   * `--env`: flag used to define an environment variable that will be accessible from within the deployed container. You can define as many `--env` parameters as you want.
    * `--volume`:
 
 For example:
