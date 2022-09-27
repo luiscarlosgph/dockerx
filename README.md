@@ -67,8 +67,13 @@ do nothing, and stop immediately.
    * `--volume`: flag used to mount a volume within the container, it can be a Docker volume or a folder from the host computer, the syntax is the same for both. You can define as many of them as you want. The syntax is `--volume <src>:<dst>`, e.g. `--volume /tmp/host_folder:/tmp/container_folder --volume /media/usb0:/mnt/usb0` (obviously, for this to work, the source folders must exist in the host computer). The source can also be an existing Docker volume, e.g. you create a volume with `docker volume create hello` and then mount it inside the container with `--volume hello:/tmp/hello`.
 
 Exemplary command to launch a container and run `xclock` from within the container:
+<!--
 ```
 $ python3 -m dockerx.run --image nvidia/cuda:11.7.1-base-ubuntu20.04 --nvidia 1 --command '/bin/bash -c "apt update && apt install -y x11-apps && xclock"'
+```
+-->
+```
+$ python3 -m dockerx.run --image nvidia/cuda:11.7.1-base-ubuntu20.04 --nvidia 1 --command /usr/bin/xclock
 ```
 This should display ```xclock``` in your local screen.
 
