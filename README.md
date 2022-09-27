@@ -53,7 +53,7 @@ Launch containers from your terminal
 ------------------------------------
 To launch a container and execute a specific command inside the container:
 ```bash
-$ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command <shell command> --env <key=value> --volume <src:dst>
+$ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command <shell command> --env <key=value> --volume <src>:<dst>
 ```
 Options:
    * `--image`: name of the Docker image you want to deploy as a container.
@@ -64,8 +64,8 @@ with the ```--command``` option. If ```--command``` is not specified, the defaul
 defined by the `CMD` keyword in the Dockerfile of your image. If None is defined (as happens for 
 many images such as ```ubuntu``` or ```nvidia/cuda:11.7.1-base-ubuntu20.04```), the container will start, 
 do nothing, and stop immediately. 
-   * `--env`: flag used to define an environment variable that will be accessible from within the deployed container. You can define as many of them as you want.
-   * `--volume`: flag used to mount a volume within the container, it can be a Docker volume or a folder from the host computer, the syntax is the same for both. 
+   * `--env`: flag used to define an environment variable that will be accessible from within the deployed container. You can define as many of them as you want. The syntax is `--env <key=value>`, e.g. `--env DISPLAY=:0`.
+   * `--volume`: flag used to mount a volume within the container, it can be a Docker volume or a folder from the host computer, the syntax is the same for both. The syntax is `--volume <src>:<dst>`, e.g. `--volume /tmp/folder/in/the/host:/tmp/folder/inside/the/container` (obviously, for this to work, the folder `/tmp/folder/in/the/host` must exist in the host computer). The source can also be an existing Docker volume, e.g. you create a volume with `docker volume create hello` and then mount it inside the container with `--volume hello:/tmp/hello`.
 
 For example:
 ```
