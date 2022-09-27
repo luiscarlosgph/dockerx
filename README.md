@@ -64,7 +64,7 @@ defined by the `CMD` keyword in the Dockerfile of your image. If None is defined
 many images such as ```ubuntu``` or ```nvidia/cuda:11.7.1-base-ubuntu20.04```), the container will start, 
 do nothing, and stop immediately. 
    * `--env`: flag used to define an environment variable that will be accessible from within the deployed container. You can define as many of them as you want. The syntax is `--env <key=value>`, e.g. `--env DISPLAY=:0 --env PATH=/usr/bin`.
-   * `--volume`: flag used to mount a volume within the container, it can be a Docker volume or a folder from the host computer, the syntax is the same for both. You can define as many of them as you want. The syntax is `--volume <src>:<dst>`, e.g. `--volume /tmp/folder/in/the/host:/tmp/folder/inside/the/container` (obviously, for this to work, the folder `/tmp/folder/in/the/host` must exist in the host computer). The source can also be an existing Docker volume, e.g. you create a volume with `docker volume create hello` and then mount it inside the container with `--volume hello:/tmp/hello`.
+   * `--volume`: flag used to mount a volume within the container, it can be a Docker volume or a folder from the host computer, the syntax is the same for both. You can define as many of them as you want. The syntax is `--volume <src>:<dst>`, e.g. `--volume /tmp/host_folder:/tmp/container_folder --volume /media/usb0:/mnt/usb0` (obviously, for this to work, the folder `/tmp/folder/in/the/host` must exist in the host computer). The source can also be an existing Docker volume, e.g. you create a volume with `docker volume create hello` and then mount it inside the container with `--volume hello:/tmp/hello`.
 
 Exemplary command to launch a container and run `xclock` from within the container:
 ```
