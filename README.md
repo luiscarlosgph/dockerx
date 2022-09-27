@@ -149,7 +149,7 @@ container_1 = dl.launch_container('ubuntu', command='sleep infinity')
 print(container_1.id)
 
 # Launch a container with CUDA support (as a command is specified, the CMD in your Dockerfile will be ignored)
-container_2 = dl.launch_container('nvidia/cuda:11.0-base', command='sleep infinity', nvidia_runtime=True)
+container_2 = dl.launch_container('nvidia/cuda:11.7.1-base-ubuntu20.04', command='sleep infinity', nvidia_runtime=True)
 print(container_2.id)
 ```
 
