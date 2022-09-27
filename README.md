@@ -61,7 +61,7 @@ Options:
    * `--command`: the idea behind the ```--command``` parameter is to use it for launching jobs inside the 
 container that require X11 support. No console output will be shown when running a command 
 with the ```--command``` option. If ```--command``` is not specified, the default command executed inside the container is that 
-defined by the CMD keyword in the Dockerfile of your image. If None is defined (as happens for 
+defined by the `CMD` keyword in the Dockerfile of your image. If None is defined (as happens for 
 many images such as ```ubuntu``` or ```nvidia/cuda:11.7.1-base-ubuntu20.04```), the container will start, 
 do nothing, and stop immediately. 
    * `--env`: 
