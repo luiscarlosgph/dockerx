@@ -5,6 +5,9 @@
 """
 import argparse
 import sys
+import docker
+
+# My imports
 import dockerx
 
 
@@ -32,9 +35,9 @@ def parse_command_line_parameters(parser):
                         help=msg('--nvidia'))
     parser.add_argument('--command', required=False, default=None, type=str,
                         help=msg('--command'))
-    parser.add_argument('--volume', required=False, nargs='*', type=str, 
+    parser.add_argument('--volume', required=False, action='append', type=str, 
                         default=[], help=msg('--volume'))
-    parser.add_argument('--env', required=False, nargs='*', type=str,
+    parser.add_argument('--env', required=False, action='append', type=str,
                         default=[], help=msg('--env'))
 
     args = parser.parse_args()
@@ -46,22 +49,42 @@ def parse_command_line_parameters(parser):
 def parse_env(list_of_args: list[str]):
     """
     @brief Convert the list of --env strings passed in the command line into
-           a dictionary for dockerx.DockerLauncer.launch_container().
+           a dictionary for dockerx.DockerLauncher.launch_container().
+
     @param[in]  list_of_args  List of strings like 'DEEP=LEARNING'.
+
     @returns the dictionary of environment variables.
     """
-    return {s.split('=')[0]: s.split('=')[1] for s in list_of_args}
+    return { s.split('=')[0]: s.split('=')[1] for s in list_of_args }
+
+
+def parse_vol(list_of_args: list[str]):
+    """
+    @brief Convert the list of --volume strings passed in the command line
+           into a dictionary for dockerx.DockerLauncher.launch_container().
+
+    @details There are two types of volumes that we can pass to 
+             DockerLauncher, a Docker volume or a bind volume.
+             The key is either the host path or a volume name.
+             
+    @param[in]  list_of_args  List of strings like '/tmp/unix:/foo/unix'.
+
+    @returns the dictionary of volumes.
+    """
+    return { s.split(':')[0]: {'bind': s.split(':')[1], 'mode': 'rw'} \
+        for s in list_of_args }
 
 
 def main():
     # Parse command line parameters
     parser = argparse.ArgumentParser()
     args = parse_command_line_parameters(parser)
-    
+
     # Launch docker container
     dl = dockerx.DockerLauncher()
     container = dl.launch_container(args.image, command=args.command, 
-            nvidia_runtime=args.nvidia, env_vars=parse_env(args.env))
+            nvidia_runtime=args.nvidia, env_vars=parse_env(args.env),
+            volumes=parse_vol(args.volume))
         
     # Print info for the user
     sys.stdout.write("\nTo get a container terminal run:  ") 
