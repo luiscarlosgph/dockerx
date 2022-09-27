@@ -72,7 +72,7 @@ $ python3 -m dockerx.run --image TODO --nvidia 1 --command TODO
 ```
 This should display ```PyCharm``` in your screen.
 
-**If you want to run multiple commands**, you can run them like this:
+**If you want to run multiple commands**, for example to install a graphical application and then run it, you can do it like this:
 ```
 $ python3 -m dockerx.run --image nvidia/cuda:11.7.1-base-ubuntu20.04 --nvidia 1 --command '/bin/bash -c "apt update && apt install -y x11-apps && xclock"'
 ```
