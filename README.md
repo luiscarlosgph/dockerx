@@ -69,7 +69,7 @@ do nothing, and stop immediately.
 
 Exemplary command to launch a container and run `PyCharm` from within the container:
 ```
-$ python3 -m dockerx.run --name wild_turin --image luiscarlosgph/pycharm:latest --nvidia 1 --command TODO
+$ python3 -m dockerx.run --name wild_turin --image luiscarlosgph/pycharm:latest --nvidia 1 --command /home/docker/pycharm/bin/pycharm.sh
 ```
 This should display ```PyCharm``` in your screen.
 
