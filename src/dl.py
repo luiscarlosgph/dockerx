@@ -213,7 +213,7 @@ class DockerLauncher:
         vol.update(additional_volumes)
         docker_options = {
             'environment' : env,
-            'volumes' : vol,
+            'volumes'     : vol,
         }
         if nvidia_runtime:
             docker_options['runtime'] = 'nvidia'
