@@ -53,9 +53,10 @@ Launch containers from your terminal
 ------------------------------------
 To launch a container and execute a specific command inside the container:
 ```bash
-$ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command <command> --env <key=value> --volume <src>:<dst>
+$ python3 -m dockerx.run --name <container_name> --image <image_name> --nvidia <0_or_1> --command <command> --env <key=value> --volume <src>:<dst>
 ```
 Options:
+   * `--name`: name that you want to give to the container.
    * `--image`: name of the Docker image you want to deploy as a container.
    * `--nvidia`: flag to activate the NVIDIA runtime, necessary to run CUDA applications. Requires `nvidia-docker2`, if you do not have it installed, check [this](https://github.com/luiscarlosgph/how-to/tree/main/docker) link.
    * `--command`: use this parameter to launch jobs inside the 
@@ -68,7 +69,7 @@ do nothing, and stop immediately.
 
 Exemplary command to launch a container and run `PyCharm` from within the container:
 ```
-$ python3 -m dockerx.run --image luiscarlosgph/pycharm:latest --nvidia 1 --command TODO
+$ python3 -m dockerx.run --name wild_turin --image luiscarlosgph/pycharm:latest --nvidia 1 --command TODO
 ```
 This should display ```PyCharm``` in your screen.
 
