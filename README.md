@@ -56,8 +56,8 @@ To launch a container and execute a specific command inside the container:
 $ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command <shell command> --env <key=value>
 ```
 Options:
-   * `--image`:
-   * `--nvidia`:
+   * `--image`: name of the Docker image you want to deploy as a container.
+   * `--nvidia`: flag to activate the NVIDIA runtime, necessary to run CUDA applications. Requires `nvidia-docker2`, if you do not have it installed check [this](https://github.com/luiscarlosgph/how-to/tree/main/docker) link.
    * `--command`: the idea behind the ```--command``` parameter is to use it for launching jobs inside the 
 container that require X11 support. No console output will be shown when running a command 
 with the ```--command``` option. If ```--command``` is not specified, the default command executed inside the container is that 
