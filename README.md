@@ -53,25 +53,33 @@ Launch containers from your terminal
 ------------------------------------
 To launch a container and execute a specific command inside the container:
 ```bash
-$ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command <shell command>
+$ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command <command> --env <key=value> --volume <src>:<dst>
 ```
-For example:
+Options:
+   * `--image`: name of the Docker image you want to deploy as a container.
+   * `--nvidia`: flag to activate the NVIDIA runtime, necessary to run CUDA applications. Requires `nvidia-docker2`, if you do not have it installed, check [this](https://github.com/luiscarlosgph/how-to/tree/main/docker) link.
+   * `--command`: use this parameter to launch jobs inside the 
+container that require graphical (i.e. X11) support. The syntax is `--command <path_to_program_in_container> <parameters>`. As this package is meant to run graphical applications, no terminal output will be shown. If ```--command``` is not specified, the default command executed inside the container is that 
+defined by the `CMD` keyword in the Dockerfile of your image. If None is defined (as happens for 
+many images such as ```ubuntu``` or ```nvidia/cuda:11.7.1-base-ubuntu20.04```), the container will start, 
+do nothing, and stop immediately. 
+   * `--env`: flag used to define an environment variable that will be accessible from within the deployed container. You can define as many of them as you want. The syntax is `--env <key=value>`, e.g. `--env DISPLAY=:0 --env PATH=/usr/bin`.
+   * `--volume`: flag used to mount a volume within the container, it can be a Docker volume or a folder from the host computer, the syntax is the same for both. You can define as many of them as you want. The syntax is `--volume <src>:<dst>`, e.g. `--volume /tmp/host_folder:/tmp/container_folder --volume /media/usb0:/mnt/usb0` (obviously, for this to work, the source folders must exist in the host computer). The source can also be an existing Docker volume, e.g. you create a volume with `docker volume create hello` and then mount it inside the container with `--volume hello:/tmp/hello`.
+
+Exemplary command to launch a container and run `PyCharm` from within the container:
+```
+$ python3 -m dockerx.run --image TODO --nvidia 1 --command TODO
+```
+This should display ```PyCharm``` in your screen.
+
+**If you want to run multiple commands**, for example to install a graphical application and then run it, you can do it like this:
 ```
 $ python3 -m dockerx.run --image nvidia/cuda:11.7.1-base-ubuntu20.04 --nvidia 1 --command '/bin/bash -c "apt update && apt install -y x11-apps && xclock"'
 ```
-This should display ```xclock``` in your local screen.
+This should display ```xclock``` in your screen.
 
-The idea behind the ```--command``` parameter is to use it for launching jobs inside the 
-container that require X11 support. No console output will be shown when running a command 
-with the ```--command``` option.
-
-If ```--command``` is not specified, the default command executed inside the container is that 
-defined by the CMD keyword in the Dockerfile of your image. If None is defined (as happens for 
-many images such as ```ubuntu``` or ```nvidia/cuda:11.7.1-base-ubuntu20.04```), the container will start, 
-do nothing, and stop immediately. 
-
-If you want to run a container forever so you can bash into it with ```docker exec -it <container id> /bin/bash```
-and run GUIs inside the container, simply run:
+**If you want to run a container forever** so you can 1) bash into it with ```docker exec -it <container id> /bin/bash```
+and 2) run GUIs inside the container, you can use `sleep infinity` as your command:
 ```bash
 $ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command 'sleep infinity'
 ```
@@ -101,19 +109,19 @@ To remove the container run:      docker rm 0b2b964b8b8f
 
 $ docker exec -it 0b2b964b8b8f /bin/bash
 root@0b2b964b8b8f:/# nvidia-smi
-Thu Apr 15 23:42:59 2021
+Tue Sep 27 11:12:56 2022
 +-----------------------------------------------------------------------------+
-| NVIDIA-SMI 460.39       Driver Version: 460.39       CUDA Version: 11.2     |
+| NVIDIA-SMI 515.65.01    Driver Version: 515.65.01    CUDA Version: 11.7     |
 |-------------------------------+----------------------+----------------------+
 | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
 | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
 |                               |                      |               MIG M. |
 |===============================+======================+======================|
-|   0  TITAN X (Pascal)    Off  | 00000000:01:00.0 Off |                  N/A |
-| 23%   27C    P8     9W / 250W |     71MiB / 12195MiB |      0%      Default |
+|   0  NVIDIA TITAN X ...  Off  | 00000000:01:00.0  On |                  N/A |
+| 23%   35C    P8    17W / 250W |    369MiB / 12288MiB |      0%      Default |
 |                               |                      |                  N/A |
 +-------------------------------+----------------------+----------------------+
-
+                                                                               
 +-----------------------------------------------------------------------------+
 | Processes:                                                                  |
 |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
