@@ -67,7 +67,7 @@ do nothing, and stop immediately.
    * `--env`: flag used to define an environment variable that will be accessible from within the deployed container. You can define as many of them as you want. The syntax is `--env <key=value>`, e.g. `--env DISPLAY=:0`.
    * `--volume`: flag used to mount a volume within the container, it can be a Docker volume or a folder from the host computer, the syntax is the same for both. The syntax is `--volume <src>:<dst>`, e.g. `--volume /tmp/folder/in/the/host:/tmp/folder/inside/the/container` (obviously, for this to work, the folder `/tmp/folder/in/the/host` must exist in the host computer). The source can also be an existing Docker volume, e.g. you create a volume with `docker volume create hello` and then mount it inside the container with `--volume hello:/tmp/hello`.
 
-For example:
+Exemplary command to launch a container and run `xclock` from within the container:
 ```
 $ python3 -m dockerx.run --image nvidia/cuda:11.7.1-base-ubuntu20.04 --nvidia 1 --command '/bin/bash -c "apt update && apt install -y x11-apps && xclock"'
 ```
