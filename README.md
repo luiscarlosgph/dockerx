@@ -74,7 +74,7 @@ $ python3 -m dockerx.run --image nvidia/cuda:11.7.1-base-ubuntu20.04 --nvidia 1 
 This should display ```xclock``` in your local screen.
 
 **If you want to run a container forever** so you can 1) bash into it with ```docker exec -it <container id> /bin/bash```
-and 2) run GUIs inside the container, run:
+and 2) run GUIs inside the container:
 ```bash
 $ python3 -m dockerx.run --image <image name> --nvidia <0 or 1> --command 'sleep infinity'
 ```
