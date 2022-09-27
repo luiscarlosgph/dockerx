@@ -66,16 +66,17 @@ do nothing, and stop immediately.
    * `--env`: flag used to define an environment variable that will be accessible from within the deployed container. You can define as many of them as you want. The syntax is `--env <key=value>`, e.g. `--env DISPLAY=:0 --env PATH=/usr/bin`.
    * `--volume`: flag used to mount a volume within the container, it can be a Docker volume or a folder from the host computer, the syntax is the same for both. You can define as many of them as you want. The syntax is `--volume <src>:<dst>`, e.g. `--volume /tmp/host_folder:/tmp/container_folder --volume /media/usb0:/mnt/usb0` (obviously, for this to work, the source folders must exist in the host computer). The source can also be an existing Docker volume, e.g. you create a volume with `docker volume create hello` and then mount it inside the container with `--volume hello:/tmp/hello`.
 
-Exemplary command to launch a container and run `xclock` from within the container:
-<!--
+Exemplary command to launch a container and run `PyCharm` from within the container:
+```
+$ python3 -m dockerx.run --image TODO --nvidia 1 --command TODO
+```
+This should display ```PyCharm``` in your screen.
+
+**If you want to run multiple commands**, you can run them like this:
 ```
 $ python3 -m dockerx.run --image nvidia/cuda:11.7.1-base-ubuntu20.04 --nvidia 1 --command '/bin/bash -c "apt update && apt install -y x11-apps && xclock"'
 ```
--->
-```
-$ python3 -m dockerx.run --image nvidia/cuda:11.7.1-base-ubuntu20.04 --nvidia 1 --command /usr/bin/xclock
-```
-This should display ```xclock``` in your local screen.
+This should display ```xclock``` in your screen.
 
 **If you want to run a container forever** so you can 1) bash into it with ```docker exec -it <container id> /bin/bash```
 and 2) run GUIs inside the container, you can use `sleep infinity` as your command:
