@@ -17,6 +17,7 @@ def msg(param: str):
     @returns the help message for each command line parameter.
     """
     msg = {
+        '--name'   : 'Name that you want to give to the container.',
         '--image'  : 'Docker image name.',
         '--nvidia' : 'Activate the use of nvidia runtime. Default is 0.',  
         '--command': 'Command to be executed in the container.',
@@ -29,6 +30,8 @@ def msg(param: str):
 
 
 def parse_command_line_parameters(parser):
+    parser.add_argument('--name', required=False, default=None, type=str, 
+                        help=msg('--name'))
     parser.add_argument('--image', required=True, type=str, 
                         help=msg('--image'))
     parser.add_argument('--nvidia', required=False, default=False, type=int,
@@ -84,7 +87,7 @@ def main():
     dl = dockerx.DockerLauncher()
     container = dl.launch_container(args.image, command=args.command, 
             nvidia_runtime=args.nvidia, env_vars=parse_env(args.env),
-            volumes=parse_vol(args.volume))
+            volumes=parse_vol(args.volume), name=args.name)
         
     # Print info for the user
     sys.stdout.write("\nTo get a container terminal run:  ") 

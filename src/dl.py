@@ -221,7 +221,8 @@ class DockerLauncher:
         return docker_options
 
     def launch_container(self, image_name, ifname='docker0',
-            nvidia_runtime=False, volumes={}, env_vars={}, command=None):
+            nvidia_runtime=False, volumes={}, env_vars={}, command=None,
+            name=None):
         """
         @brief Launch a Docker container.
         
@@ -276,11 +277,16 @@ class DockerLauncher:
                                     want to add.
         @param[in]  env_vars        Dictionary of additional environment 
                                     variables you might want to add.
+        @param[in]  name            Container name, default is None.
         @returns the Docker container object of the container launched.
         """
         # Prepare environment and volumes to run the container
         docker_options = DockerLauncher.prepare_environment(ifname, 
             nvidia_runtime, volumes, env_vars)
+        
+        # Put a name to the container if provided
+        if name is not None:
+            docker_options['name'] = name
 
         # Launch container
         container = self.client.containers.run(image_name, detach=True,
