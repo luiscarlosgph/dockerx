@@ -17,21 +17,23 @@ You want to launch a graphical application inside the Docker container and see t
    
 Requirements
 ------------
-If you are launching this script on a server (e.g. DGX) you need to edit the 
-configuration file of the SSH server -> ```/etc/ssh/sshd_config``` and
+1. If you are launching this script on a server (e.g. DGX) you need to edit the 
+configuration file of the SSH server, which is ```/etc/ssh/sshd_config```, and
 add the option:
 
-``` X11UseLocalhost no ```
+   ``` X11UseLocalhost no ```
 
-To edit ```/etc/ssh/sshd_config``` you need superuser access. After editing 
-this file you need to run:
+   To edit ```/etc/ssh/sshd_config``` you need superuser access. After editing 
+   this file you need to run:
 
-```bash
-$ sudo service ssh reload
-```
+   ```bash
+   $ sudo service ssh reload
+   ```
 
-This will reload the SSH server configuration without disconnecting existing 
-sessions. 
+   This will reload the SSH server configuration without disconnecting existing 
+   sessions. 
+
+2. This package requires Python >= 3.9. If you do not know how to easily switch between Python versions, [here](https://github.com/luiscarlosgph/how-to/tree/main/pyenv) you have a tutorial on how to do it with **pyenv**.
 
 Install using pip
 -----------------
