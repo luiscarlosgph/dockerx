@@ -11,7 +11,7 @@ import docker
 import dockerx
 
 
-def msg(param: str):
+def help_msg(param: str):
     """
     @param[in]  param  Command line option, e.g.: '--image'.
     @returns the help message for each command line parameter.
@@ -25,23 +25,27 @@ def msg(param: str):
                      + 'The <source> can be either a Docker volume ' \
                      + 'or a local path in the host.',
         '--env'    : 'Syntax: \'<key>=<value>\'.',
+        '--network': 'Connect a container to a network. ' \
+                     'Syntax: --network <value> (e.g. --network host)',
     }
     return msg[param]
 
 
 def parse_command_line_parameters(parser):
     parser.add_argument('--name', required=False, default=None, type=str, 
-                        help=msg('--name'))
+                        help=help_msg('--name'))
     parser.add_argument('--image', required=True, type=str, 
-                        help=msg('--image'))
+                        help=help_msg('--image'))
     parser.add_argument('--nvidia', required=False, default=False, type=int,
-                        help=msg('--nvidia'))
+                        help=help_msg('--nvidia'))
     parser.add_argument('--command', required=False, default=None, type=str,
-                        help=msg('--command'))
+                        help=help_msg('--command'))
     parser.add_argument('--volume', required=False, action='append', type=str, 
-                        default=[], help=msg('--volume'))
+                        default=[], help=help_msg('--volume'))
     parser.add_argument('--env', required=False, action='append', type=str,
-                        default=[], help=msg('--env'))
+                        default=[], help=help_msg('--env'))
+    parser.add_argument('--network', required=False, default=None, type=str, 
+                        help=help_msg('--network'))
 
     args = parser.parse_args()
     args.nvidia = bool(int(args.nvidia))
@@ -87,7 +91,8 @@ def main():
     dl = dockerx.DockerLauncher()
     container = dl.launch_container(args.image, command=args.command, 
             nvidia_runtime=args.nvidia, env_vars=parse_env(args.env),
-            volumes=parse_vol(args.volume), name=args.name)
+            volumes=parse_vol(args.volume), name=args.name, 
+            network=args.network)
         
     # Print info for the user
     sys.stdout.write("\nTo get a container terminal run:  ") 

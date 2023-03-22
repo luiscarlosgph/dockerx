@@ -141,11 +141,28 @@ class DockerLauncher:
         return result
 
     @staticmethod
-    def prepare_environment(ifname, nvidia_runtime, additional_volumes, 
-            additional_env_vars):
+    def prepare_environment(ifname: str, nvidia_runtime: bool, 
+            additional_volumes: dict, additional_env_vars: dict, 
+            network: str):
         """
         @brief Prepares the environment to launch a container with X11 
                support.
+
+        @param[in]  ifname               Network adaptar name, e.g. 'eth0' or 
+                                         'docker0'.
+        @param[in]  nvidia_runtime       Flag to enable the nvidia runtime.
+        @param[in]  additional_volumes   Dictionary with additional volumes.
+                                         The key is typically a string 
+                                         containing the path in the host.  
+                                         The value is a dictionary typically 
+                                         containing the keys 'bind' and 'mode'.
+                                         'bind' contains the mount point inside
+                                         the container and 'mode' contains the
+                                         read/write mode, e.g. 'rw'.
+        @param[in]  additional_env_vars  Dictionary containing environment
+                                         variables and their corresponding
+                                         values.
+
         @returns the dictionary of docker options.
         """
         # Initialise environment and volumes
@@ -208,21 +225,28 @@ class DockerLauncher:
             # Mount Xauthority file inside the container
             vol[env['XAUTHORITY']] = {'bind': env['XAUTHORITY'], 'mode':"rw"}
         
-        # Prepare dictionary of options for docker
+        # Prepare dictionary of options for Docker
         env.update(additional_env_vars)
         vol.update(additional_volumes)
         docker_options = {
             'environment' : env,
             'volumes'     : vol,
         }
+
+        # Add NVIDIA runtime if requested
         if nvidia_runtime:
             docker_options['runtime'] = 'nvidia'
         
+        # Specify the network to connect to if provided
+        if network is not None:
+            docker_options['network'] = network
+        
         return docker_options
 
-    def launch_container(self, image_name, ifname='docker0',
-            nvidia_runtime=False, volumes={}, env_vars={}, command=None,
-            name=None):
+    def launch_container(self, image_name: str, ifname: str = 'docker0',
+            nvidia_runtime: bool = False, volumes: dict = {}, 
+            env_vars: dict = {}, command: str = None, name=None, 
+            network: str = None):
         """
         @brief Launch a Docker container.
         
@@ -277,12 +301,19 @@ class DockerLauncher:
                                     want to add.
         @param[in]  env_vars        Dictionary of additional environment 
                                     variables you might want to add.
+        @param[in]  command         String containing the command you want to
+                                    run in the container.
         @param[in]  name            Container name, default is None.
+        @paramiin]  network         Name of the network you want to connect
+                                    your container to. Can be None, in which
+                                    case the container will be connected to
+                                    the default Docker network.
+
         @returns the Docker container object of the container launched.
         """
         # Prepare environment and volumes to run the container
         docker_options = DockerLauncher.prepare_environment(ifname, 
-            nvidia_runtime, volumes, env_vars)
+            nvidia_runtime, volumes, env_vars, network)
         
         # Put a name to the container if provided
         if name is not None:

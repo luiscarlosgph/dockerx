@@ -1,10 +1,13 @@
 Description
 -----------
+
 This repository contains a Python script that allows you to launch a docker 
 container with X11 graphics support. 
 
+
 Typical use case
 ----------------
+
 A typical use case of this script is when you are connecting via ssh from your 
 laptop to a remote computer (e.g. a DGX server) and you want to launch a docker 
 container inside the remote computer with X11 support. 
@@ -14,10 +17,14 @@ A quick diagram:
 Laptop => Remote computer (connected via ssh) => Docker container 
 
 You want to launch a graphical application inside the Docker container and see the GUI in your laptop.
-   
+
+
 Requirements
 ------------
-1. If you are launching this script on a server (e.g. DGX) you need to edit the 
+
+1. This package requires Python >= 3.9.
+
+2. If you are launching this script on a server (e.g. DGX) you need to edit the 
 configuration file of the SSH server, which is ```/etc/ssh/sshd_config```, and
 add the option:
 
@@ -33,16 +40,20 @@ add the option:
    This will reload the SSH server configuration without disconnecting existing 
    sessions. 
 
-2. This package requires Python >= 3.9. If you do not know how to easily switch between Python versions, [here](https://github.com/luiscarlosgph/how-to/tree/main/pyenv) you have a tutorial on how to do it with **pyenv**.
+3. This package requires Python >= 3.9. If you do not know how to easily switch between Python versions, [here](https://github.com/luiscarlosgph/how-to/tree/main/pyenv) you have a tutorial on how to do it with **pyenv**.
+
 
 Install using pip
 -----------------
+
 ```bash
 $ python3 -m pip install dockerx --user
 ```
 
+
 Install this package from source
 --------------------------------
+
 ```bash
 $ sudo apt install python3 python3-pip
 $ python3 -m pip install docker argparse --user
@@ -51,8 +62,10 @@ $ cd dockerx
 $ python3 setup.py install --user
 ```
 
+
 Launch containers from your terminal
 ------------------------------------
+
 To launch a container and execute a specific command inside the container:
 ```bash
 $ python3 -m dockerx.run --name <container_name> --image <image_name> --nvidia <0_or_1> --command <command> --env <key=value> --volume <src>:<dst>
@@ -139,8 +152,10 @@ As in the example above, ```xclock``` should be now shown in your local display.
 However, this container has CUDA support. GPU applications can now be executed
 and displayed from within the container.
 
+
 Launch containers from your Python code
 ---------------------------------------
+
 Exemplary code snippet that shows different ways to launch containers using the 
 Python module in this repo. 
 
@@ -164,11 +179,14 @@ container_2 = dl.launch_container('nvidia/cuda:11.7.1-base-ubuntu20.04', command
 print(container_2.id)
 ```
 
+
 Run unit tests
 --------------
+
 ```bash
 $ python3 tests/test_docker_launcher.py
 ```
+
 
 Author
 ------
@@ -178,4 +196,5 @@ Luis Carlos Garcia-Peraza Herrera (luiscarlos.gph@gmail.com).
 
 License
 -------
+
 The code in this repository is released under an [MIT license](https://github.com/luiscarlosgph/docker-with-graphics/blob/main/LICENSE).
