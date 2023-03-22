@@ -22,7 +22,7 @@ You want to launch a graphical application inside the Docker container and see t
 Requirements
 ------------
 
-1. This package requires Python >= 3.9.
+1. This package requires Python >= 3.9. Following [these](https://github.com/luiscarlosgph/how-to/tree/main/pyenv) instructions you can easily get any version of Python quickly up and running.
 
 2. If you are launching this script on a server (e.g. DGX) you need to edit the 
 configuration file of the SSH server, which is ```/etc/ssh/sshd_config```, and
