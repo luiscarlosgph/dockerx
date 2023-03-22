@@ -101,6 +101,9 @@ class TestDockerLauncher(unittest.TestCase):
         socket_type = dockerx.DockerLauncher.get_x11_server_socket_type()
         self.assertEqual(socket_type, 'tcp')
 
+        # Wait for netcat to finish
+        exit_code = process.wait()
+
     def test_unix_socket_detection(self):
         host = ''
         offset = 99
