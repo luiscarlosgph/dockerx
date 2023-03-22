@@ -8,23 +8,19 @@ import unittest
 import os
 import socket
 import pathlib
-import threading
+import subprocess
+import time
 
 # My imports
 import dockerx
 
-def dummy_tcp_server(host, port):
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    address = (host, port)
-    sock.bind(address) 
-    sock.listen(1)
-    (client_sock, _) = sock.accept()
-    client_sock.close()
-    sock.close()
 
-def is_port_in_use(port):
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        return s.connect_ex(('localhost', port)) == 0
+def is_port_in_use(host, port):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    result = sock.connect_ex((host, port))
+    sock.close()
+    return True if result == 0 else False
+    
 
 class TestDockerLauncher(unittest.TestCase):
 
@@ -68,13 +64,28 @@ class TestDockerLauncher(unittest.TestCase):
         os.environ['DISPLAY'] = '127.0.0.1:no_port_for_you'
         port = dockerx.DockerLauncher.get_port_from_display()
         self.assertFalse(port)
+    
+    def test_function_to_detect_port_in_use(self, host='127.0.0.1', 
+                                            port=50324, delay=1):
+        # Check that our function does not detect any listening server
+        self.assertFalse(is_port_in_use(host, port))
 
-    def test_tcp_socket_detection(self, base_port=6000):
+        # Launch netcat server
+        process = subprocess.Popen(['nc', '-l', host, str(port)], 
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        time.sleep(delay)
+
+        # Check that our function can detect the listening server
+        self.assertTrue(is_port_in_use(host, port))
+        
+        # Wait for netcat to finish
+        exit_code = process.wait()
+
+    def test_tcp_socket_detection(self, host='127.0.0.1', base_port=6000,
+                                  offset=50, delay=1):
         # Find a port that is not in use
-        offset = 50
-        host = 'localhost'
         port = base_port + offset
-        while is_port_in_use(port): 
+        while is_port_in_use(host, port): 
             offset += 1 
             port = base_port + offset
 
@@ -82,14 +93,13 @@ class TestDockerLauncher(unittest.TestCase):
         os.environ['DISPLAY'] = ':' + str(offset)
         
         # Run an X11 dummy TCP server
-        thread = threading.Thread(target=dummy_tcp_server, args=(host, port))
-        thread.start()
+        process = subprocess.Popen(['nc', '-l', host, str(port)], 
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        time.sleep(delay)
 
         # Check that we are able to detect dummy X11 TCP server
         socket_type = dockerx.DockerLauncher.get_x11_server_socket_type()
         self.assertEqual(socket_type, 'tcp')
-
-        thread.join()
 
     def test_unix_socket_detection(self):
         host = ''
