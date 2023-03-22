@@ -68,7 +68,7 @@ Launch containers from your terminal
 
 To launch a container and execute a specific command inside the container:
 ```bash
-$ python3 -m dockerx.run --name <container_name> --image <image_name> --nvidia <0_or_1> --command <command> --env <key=value> --volume <src>:<dst>
+$ python3 -m dockerx.run --name <container_name> --image <image_name> --nvidia <0_or_1> --command <command> --env <key=value> --volume <src>:<dst> --network <network_name>
 ```
 Options:
    * `--name`: name that you want to give to the container.
